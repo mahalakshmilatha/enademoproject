@@ -75,7 +75,45 @@ dotnet run
 The API will be available at:
 - HTTP: `http://localhost:5000`
 - HTTPS: `https://localhost:5001`
-- Swagger UI: `https://localhost:5001/swagger`
+- Swagger UI: `https://localhost:5001/swagger` or `http://localhost:5000/swagger`
+
+### Swagger UI
+
+The API includes interactive Swagger documentation where you can test all endpoints:
+
+![Swagger UI](https://github.com/user-attachments/assets/6bae441c-5b6f-458f-899f-c6de7b3631ba)
+
+## Testing the API
+
+You can test the API using:
+
+1. **Swagger UI** - Navigate to `http://localhost:5000/swagger` in your browser for interactive API documentation
+2. **cURL** - Use command-line tools to test endpoints
+3. **Postman** - Import the OpenAPI specification from `http://localhost:5000/swagger/v1/swagger.json`
+
+### Example API Calls
+
+```bash
+# Get all suppliers
+curl http://localhost:5000/api/suppliers
+
+# Get a specific customer
+curl http://localhost:5000/api/customers/1
+
+# Create a new grain requirement
+curl -X POST http://localhost:5000/api/grainrequirements \
+  -H "Content-Type: application/json" \
+  -d '{
+    "customerId": 1,
+    "grainType": "Wheat",
+    "quantity": 5000,
+    "requiredByDate": "2025-11-15T00:00:00",
+    "status": "Pending"
+  }'
+
+# Get all requirements with customer and supplier details
+curl http://localhost:5000/api/grainrequirements
+```
 
 ## API Endpoints
 
