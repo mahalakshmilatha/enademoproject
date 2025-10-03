@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrainBroker.API", "GrainBroker.API\GrainBroker.API.csproj", "{1C596DC3-5C60-4DBF-9925-852C39EEF5B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrainBroker.API", "GrainBroker.API\GrainBroker.API\GrainBroker.API.csproj", "{8A245AA6-41BB-1511-A900-4D0AF2AF1779}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrainBroker.Entities", "GrainBroker.Entities\GrainBroker.Entities.csproj", "{B85063E8-0175-4D7D-9BC3-D46FA0BC116D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1C596DC3-5C60-4DBF-9925-852C39EEF5B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1C596DC3-5C60-4DBF-9925-852C39EEF5B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1C596DC3-5C60-4DBF-9925-852C39EEF5B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1C596DC3-5C60-4DBF-9925-852C39EEF5B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A245AA6-41BB-1511-A900-4D0AF2AF1779}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A245AA6-41BB-1511-A900-4D0AF2AF1779}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A245AA6-41BB-1511-A900-4D0AF2AF1779}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A245AA6-41BB-1511-A900-4D0AF2AF1779}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B85063E8-0175-4D7D-9BC3-D46FA0BC116D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B85063E8-0175-4D7D-9BC3-D46FA0BC116D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B85063E8-0175-4D7D-9BC3-D46FA0BC116D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B85063E8-0175-4D7D-9BC3-D46FA0BC116D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
