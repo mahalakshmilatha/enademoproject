@@ -1,0 +1,29 @@
+User story
+A client, a grain broker, manages several grain suppliers and customers, 
+every month their customer base places their grain requirements and 
+its then the job of the grain broker to determine the best supplier(s) 
+to deliver against the requirements of their clients. 
+Currently this is all handled in an excel spreadsheet 
+and largely they operate on a first placed first fulfilled system. T
+hey would like to move to a more scalable and resilient platform for client management that also provides them with a level of insights / analytics. 
+Task Summary
+The purpose of this exercise is to take a standard dataset commonly used 
+as an exemplar for optimisation problems and turn that into a 'product' 
+consisting of backend, middleware, and front end. 
+The singular dataset provided includes all the data candidates need to:
+•	Ingest the CSV and determine the data models
+•	Design and implement a 'database/storage layer'
+ (relational or non-relational are both totally acceptable as long 
+ as the candidate can justify them)
+•	Design, implement and test an API or decoupled middleware layer 
+•	Design and implement a front end so that a client could better interact with this dataset, view data trends and both active and historical data. Consideration should be made for role-based access. The front end should include the implementation/consideration of authentication standards like OAuth, OpenID etc 
+Outcome
+It is not imperative that the candidate writes code for each stage, 
+we would rather that they consider, document, and design each stage 
+and be able to communicate with clarity around the decisions 
+that they have or would have made. 
+However, we would like to see a working solution for one of the stages:
+•	Backend, data ingestion, database design and implementation
+•	Middleware, a chosen middleware layer either API or equivalent communications solution.
+•	Front-end, a clean user interface that uses the middleware (where appropriate) to demonstrate a data driven dashboard.
+This brief / task highlights a candidate’s ability to take quite an informal brief and a singular of view of data, their ability to synthesise data and turn flat data into a considered / scalable and resilient solutions architecture and look to how we would add further value via analytics / machine learning / statistical analysis or operational research.

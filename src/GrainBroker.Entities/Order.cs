@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 public class Order
 {
     [Key,Required]    
-    public Guid     OrderId { get; set; }
+    public Guid OrderId { get; set; }
 
     [Required]
     public DateTime OrderDate { get; set; }
@@ -15,12 +15,12 @@ public class Order
     public Guid CustomerId { get; set; }
 
     [ForeignKey("CustomerId")]
-    public virtual Customer Customer { get; set; }
+    public virtual Customer Customer { get; set; } = null!;
 
     [Required]
-    //[Column(TypeName = "decimal(18,2)")]
-    //[Range(0, Double.MaxValue)]
+    [Column(TypeName = "decimal(18,2)")]
+    [Range(0, Double.MaxValue)]
     public decimal RequestedGrainAmount { get; set; }
 
-    public virtual OrderFulfillment Fulfillment { get; set; }
+    public virtual OrderFulfillment? Fulfillment { get; set; }
 }
