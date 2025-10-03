@@ -4,6 +4,7 @@ using GrainBroker.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GrainBroker.Entities.Migrations
 {
     [DbContext(typeof(GrainBrokerDbContext))]
-    partial class GrainBrokerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251003134856_UpdateLocation")]
+    partial class UpdateLocation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

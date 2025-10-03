@@ -9,6 +9,12 @@ namespace GrainBroker.Entities
         {
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.ConfigureWarnings(warnings =>
+                warnings.Ignore(Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId.PendingModelChangesWarning));
+        }
+
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Order> Orders { get; set; }
@@ -54,10 +60,10 @@ namespace GrainBroker.Entities
 
             // Initialize collections in entity constructors
             modelBuilder.Entity<Customer>()
-                .HasData(new Customer { Id = Guid.NewGuid(), Location = "Sample Location" });
+                .HasData(new Customer { Id = Guid.NewGuid(),CustomerName = "ABC", CustomerLocation = "Cincinatti" });
 
             modelBuilder.Entity<Supplier>()
-                .HasData(new Supplier { Id = Guid.NewGuid(), Location = "Sample Location" });
+                .HasData(new Supplier { Id = Guid.NewGuid(),SupplierName="XYZ", SupplierLocation = "Omaha" });
         }
     }
 }

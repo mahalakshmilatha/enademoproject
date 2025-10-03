@@ -12,9 +12,11 @@ public class Customer
     [Key, Required] 
     public Guid Id { get; set; }
 
+    [Required] public string CustomerName { get; set; } = string.Empty;
+
     [Required]
     [MaxLength(100)]
-    public string Location { get; set; } = string.Empty;
+    public string CustomerLocation { get; set; } = string.Empty;
 
     public virtual ICollection<Order> Orders { get; set; }
 }

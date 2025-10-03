@@ -12,9 +12,10 @@ public class Supplier
     [Key, Required]
     public Guid Id { get; set; }
 
+    [Required] public string SupplierName { get; set; } = string.Empty;
     [Required]
     [MaxLength(100)]
-    public string Location { get; set; } = string.Empty;
+    public string SupplierLocation { get; set; } = string.Empty;
 
     public virtual ICollection<OrderFulfillment> Fulfillments { get; set; }
 }
