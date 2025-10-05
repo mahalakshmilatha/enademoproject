@@ -5,7 +5,7 @@
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="McAiLzTWAjkcdHuTzt-a-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="110" y="60" width="630" height="410" as="geometry" />
+          <mxGeometry x="110" y="70" width="580" height="340" as="geometry" />
         </mxCell>
         <mxCell id="McAiLzTWAjkcdHuTzt-a-2" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#515151;shape=mxgraph.mscae.system_center.admin_console" parent="1" vertex="1">
           <mxGeometry x="190" y="250" width="70" height="50" as="geometry" />
@@ -38,7 +38,7 @@
           <mxGeometry x="502.5" y="140" width="55" height="50" as="geometry" />
         </mxCell>
         <mxCell id="McAiLzTWAjkcdHuTzt-a-17" value="&lt;b&gt;Azure SQL Database&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="340" y="417" width="80" height="30" as="geometry" />
+          <mxGeometry x="260" y="360" width="80" height="30" as="geometry" />
         </mxCell>
         <mxCell id="McAiLzTWAjkcdHuTzt-a-18" value="&lt;b&gt;Azure Blob&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="490" y="110" width="80" height="30" as="geometry" />
@@ -71,16 +71,28 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="dNrRKio9mll7GCRw1iMb-1" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/iot/Function_Apps.svg;" vertex="1" parent="1">
-          <mxGeometry x="610" y="180" width="56.67" height="50" as="geometry" />
+          <mxGeometry x="620" y="188.82" width="46.67" height="41.18" as="geometry" />
         </mxCell>
-        <mxCell id="dNrRKio9mll7GCRw1iMb-2" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.71;exitY=0.268;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="McAiLzTWAjkcdHuTzt-a-1">
+        <mxCell id="dNrRKio9mll7GCRw1iMb-2" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="557.5" y="250" as="sourcePoint" />
+            <mxPoint x="560" y="180" as="sourcePoint" />
             <mxPoint x="607.5" y="200" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="dNrRKio9mll7GCRw1iMb-3" value="&lt;b&gt;Function App/Logic App&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="586.67" y="240" width="103.33" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dNrRKio9mll7GCRw1iMb-5" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="546.67" y="300" width="103.33" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="dNrRKio9mll7GCRw1iMb-6" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/devops/Application_Insights.svg;" vertex="1" parent="1">
+          <mxGeometry x="565.72" y="310" width="20.96" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dNrRKio9mll7GCRw1iMb-7" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/security/Key_Vaults.svg;" vertex="1" parent="1">
+          <mxGeometry x="614" y="310" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dNrRKio9mll7GCRw1iMb-8" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/analytics/Power_BI_Embedded.svg;" vertex="1" parent="1">
+          <mxGeometry x="591" y="354.04" width="19.47" height="25.96" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
