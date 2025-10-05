@@ -116,12 +116,4 @@ All relationships are enforced with appropriate foreign keys and constraints.
 
 ---
 
-## Contributing
 
-Contributions are welcome! Please open issues or submit PRs for improvements or bug fixes.
-
----
-
-## License
-
-[MIT](LICENSE)
