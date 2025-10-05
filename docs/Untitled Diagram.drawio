@@ -1,0 +1,76 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36" version="28.2.5">
+  <diagram name="Page-1" id="rCBkzfrSk8FyF2lMzu-Q">
+    <mxGraphModel dx="1042" dy="562" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="McAiLzTWAjkcdHuTzt-a-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="70" width="630" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="McAiLzTWAjkcdHuTzt-a-2" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#515151;shape=mxgraph.mscae.system_center.admin_console" vertex="1" parent="1">
+          <mxGeometry x="190" y="250" width="70" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="McAiLzTWAjkcdHuTzt-a-3" value="&lt;b&gt;FrontEnd&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="190" y="210" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="McAiLzTWAjkcdHuTzt-a-4" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/containers/App_Services.svg;" vertex="1" parent="1">
+          <mxGeometry x="350" y="140" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="McAiLzTWAjkcdHuTzt-a-5" value="&lt;b&gt;App Services&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="340" y="110" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="McAiLzTWAjkcdHuTzt-a-6" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="290" y="240" as="sourcePoint" />
+            <mxPoint x="340" y="190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="McAiLzTWAjkcdHuTzt-a-8" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/databases/SQL_Database.svg;" vertex="1" parent="1">
+          <mxGeometry x="356" y="340" width="48" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="McAiLzTWAjkcdHuTzt-a-15" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.52;entryY=0.943;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.492;exitY=0.053;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="379.20599999999996" y="346.81200000000007" as="sourcePoint" />
+            <mxPoint x="380.79" y="210.00000000000003" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="McAiLzTWAjkcdHuTzt-a-16" value="" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.storage_blob;" vertex="1" parent="1">
+          <mxGeometry x="502.5" y="140" width="55" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="McAiLzTWAjkcdHuTzt-a-17" value="&lt;b&gt;Azure SQL Database&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="340" y="417" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="McAiLzTWAjkcdHuTzt-a-18" value="&lt;b&gt;Azure Blob&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="490" y="110" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="McAiLzTWAjkcdHuTzt-a-27" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="McAiLzTWAjkcdHuTzt-a-8" target="McAiLzTWAjkcdHuTzt-a-16">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="320" as="sourcePoint" />
+            <mxPoint x="510" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="McAiLzTWAjkcdHuTzt-a-28" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://icons.diagrams.net/icon-cache1/Simple_files-2028/csv1-989.png" vertex="1" parent="1">
+          <mxGeometry x="600" y="80" width="37.89" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="McAiLzTWAjkcdHuTzt-a-31" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="McAiLzTWAjkcdHuTzt-a-28">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="607.5" y="110" as="sourcePoint" />
+            <mxPoint x="557.5" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="McAiLzTWAjkcdHuTzt-a-32" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/identity/Managed_Identities.svg;" vertex="1" parent="1">
+          <mxGeometry x="200" y="129.71" width="31.21" height="30.29" as="geometry" />
+        </mxCell>
+        <mxCell id="McAiLzTWAjkcdHuTzt-a-33" value="&lt;b&gt;Azure AD&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="185.61" y="99.71000000000001" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="McAiLzTWAjkcdHuTzt-a-34" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.551;exitY=0.927;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="219.49670999999995" y="167.78883000000008" as="sourcePoint" />
+            <mxPoint x="219.8" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
