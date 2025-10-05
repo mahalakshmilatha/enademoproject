@@ -111,8 +111,24 @@ All relationships are enforced with appropriate foreign keys and constraints.
 ---
 
 ## Architecture
+This diagram illustrates a cloud-based, multi-layered architecture utilizing Microsoft Azure services. The main components and their interactions are as follows:
 
 <img width="2404" height="1444" alt="image" src="https://github.com/user-attachments/assets/ec1174f0-5f6c-4ed4-af1a-47c22c06b216" />
+1. Frontend
+User Interface: The frontend is represented by a user at a computer, accessing the application.
+Authentication: The frontend authenticates users via Azure Active Directory (Azure AD), ensuring secure access.
+2. App Services (Backend/API Layer)
+App Services: The core backend of the application is hosted in Azure App Services. This layer handles business logic and API endpoints.
+Frontend Interaction: The frontend communicates with App Services for all application operations after authentication.
+3. Data Layer
+Azure SQL Database: The application’s data is managed in an Azure SQL Database. App Services read from and write to this database as part of normal operation.
+
+Data & Process Flow
+Users authenticate via Azure AD and use the frontend to access the application.
+The frontend interacts with App Services, which in turn read from and write to the Azure SQL Database.
+Function Apps/Logic Apps handle background processes or data integrations, interacting both with the database and with blob storage for file operations.
+Files such as CSVs are uploaded to or downloaded from Azure Blob Storage, possibly triggered by the function/logic apps.
+Additional Azure services (analytics, key management, etc.) are integrated as needed.
 
 ---
 
