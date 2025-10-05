@@ -25,11 +25,11 @@ namespace GrainBroker.Entities
             base.OnModelCreating(modelBuilder);
 
             // Configure one-to-many relationship between Customer and Orders
-            modelBuilder.Entity<Customer>()
-                .HasMany(c => c.Orders)
-                .WithOne(o => o.Customer)
-                .HasForeignKey(o => o.CustomerId)
-                .OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity<Customer>()
+            //    //.HasMany(c => c.Orders)
+            //   // .WithOne(o => o.Customer)
+            //    .HasForeignKey(o => o.CustomerId)
+            //    .OnDelete(DeleteBehavior.Restrict);
 
             // Configure one-to-many relationship between Supplier and OrderFulfillments
             modelBuilder.Entity<Supplier>()

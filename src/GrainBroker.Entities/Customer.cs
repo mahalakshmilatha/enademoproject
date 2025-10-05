@@ -4,10 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 [Table("Customers")]
 public class Customer
 {
-    public Customer()
-    {
-        Orders = new HashSet<Order>();
-    }
+    //public Customer()
+    //{
+    //    Orders = new HashSet<Order>();
+    //}
 
     [Key, Required] 
     public Guid Id { get; set; }
@@ -18,5 +18,5 @@ public class Customer
     [MaxLength(100)]
     public string CustomerLocation { get; set; } = string.Empty;
 
-    public virtual ICollection<Order> Orders { get; set; }
+    //public virtual ICollection<Order> Orders { get; set; }
 }
