@@ -19,8 +19,6 @@ namespace GrainBroker.Entities.Migrations
                 name: "FK_Orders_Customers_CustomerId",
                 table: "Orders");
 
-            migrationBuilder.Sql("DELETE FROM Orders WHERE CustomerId = '7204d36f-49c2-47f4-a76f-543864e51c0c'");
-            
             migrationBuilder.DeleteData(
                 table: "Customers",
                 keyColumn: "Id",
