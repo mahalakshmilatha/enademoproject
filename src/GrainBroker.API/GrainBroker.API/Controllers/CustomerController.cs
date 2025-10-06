@@ -42,33 +42,33 @@ namespace GrainBroker.API.Controllers
             return CreatedAtAction(nameof(GetCustomer), new { id = createdCustomer.Id }, createdCustomer);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateCustomer(Guid id, Customer customer)
-        {
-            if (id != customer.Id)
-            {
-                return BadRequest();
-            }
+        // [HttpPut("{id}")]
+        // public async Task<IActionResult> UpdateCustomer(Guid id, Customer customer)
+        // {
+        //     if (id != customer.Id)
+        //     {
+        //         return BadRequest();
+        //     }
 
-            var updatedCustomer = await _customerService.UpdateCustomerAsync(customer);
-            if (updatedCustomer == null)
-            {
-                return NotFound();
-            }
+        //     var updatedCustomer = await _customerService.UpdateCustomerAsync(customer);
+        //     if (updatedCustomer == null)
+        //     {
+        //         return NotFound();
+        //     }
 
-            return Ok(updatedCustomer);
-        }
+        //     return Ok(updatedCustomer);
+        // }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCustomer(Guid id)
-        {
-            var result = await _customerService.DeleteCustomerAsync(id);
-            if (!result)
-            {
-                return NotFound();
-            }
+        // [HttpDelete("{id}")]
+        // public async Task<IActionResult> DeleteCustomer(Guid id)
+        // {
+        //     var result = await _customerService.DeleteCustomerAsync(id);
+        //     if (!result)
+        //     {
+        //         return NotFound();
+        //     }
 
-            return NoContent();
-        }
+        //     return NoContent();
+        // }
     }
 }
