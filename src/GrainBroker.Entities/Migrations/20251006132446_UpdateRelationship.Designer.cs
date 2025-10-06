@@ -4,6 +4,7 @@ using GrainBroker.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GrainBroker.Entities.Migrations
 {
     [DbContext(typeof(GrainBrokerDbContext))]
-    partial class GrainBrokerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251006132446_UpdateRelationship")]
+    partial class UpdateRelationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,7 +51,7 @@ namespace GrainBroker.Entities.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("4c8f3ab3-42f6-498d-a5cb-bc2f04c9334d"),
+                            Id = new Guid("b5e0ebed-af05-4dfd-9c27-35281a080f0d"),
                             CustomerLocation = "Cincinatti",
                             CustomerName = "ABC",
                             Status = "Active"
@@ -138,7 +141,7 @@ namespace GrainBroker.Entities.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("cde5091d-eb7b-4f6b-aab7-6bc7bb8adefb"),
+                            Id = new Guid("6f8755b3-47cb-4660-aa7b-dddfa110fee9"),
                             Status = "Active",
                             StockAvailable = 0,
                             SupplierLocation = "Omaha",

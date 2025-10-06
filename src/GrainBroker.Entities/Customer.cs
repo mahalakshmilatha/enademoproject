@@ -18,5 +18,7 @@ public class Customer
     [MaxLength(100)]
     public string CustomerLocation { get; set; } = string.Empty;
 
-    //public virtual ICollection<Order> Orders { get; set; }
+    public string Status { get; set; } = "Active";
+
+   // public virtual ICollection<Order> Orders { get; set; }
 }

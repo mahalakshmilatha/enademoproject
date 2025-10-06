@@ -4,10 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 [Table("Suppliers")]
 public class Supplier
 {
-    public Supplier()
-    {
-        Fulfillments = new HashSet<OrderFulfillment>();
-    }
+    //public Supplier()
+    //{
+    //    Fulfillments = new HashSet<OrderFulfillment>();
+    //}
 
     [Key, Required]
     public Guid Id { get; set; }
@@ -17,5 +17,11 @@ public class Supplier
     [MaxLength(100)]
     public string SupplierLocation { get; set; } = string.Empty;
 
-    public virtual ICollection<OrderFulfillment> Fulfillments { get; set; }
+    public int StockAvailable { get; set; } = 0;
+
+    public string Status { get; set; } = "Active";
+
+
+
+    // public virtual ICollection<OrderFulfillment> Fulfillments { get; set; }
 }

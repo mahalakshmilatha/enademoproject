@@ -23,4 +23,6 @@ public class Order
     public decimal RequestedGrainAmount { get; set; }
 
     public virtual OrderFulfillment? Fulfillment { get; set; }
+
+    public string Status { get; set; } = "Pending";
 }
