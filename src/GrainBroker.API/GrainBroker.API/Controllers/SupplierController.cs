@@ -28,9 +28,9 @@ namespace GrainBroker.API.Controllers
         {
             var supplier = new Supplier
             {
-                Name = request.Name,
-                Location = request.Location,
-                ContactInformation = request.ContactInformation
+                SupplierName = request.Name,
+                SupplierLocation = request.Location
+                //ContactInformation = request.ContactInformation
             };
 
             var createdSupplier = await _supplierService.CreateSupplierAsync(supplier);
