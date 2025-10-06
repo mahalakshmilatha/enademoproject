@@ -1,5 +1,5 @@
-using GrainBroker.API.Services;
 using GrainBroker.Entities;
+using GrainBroker.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

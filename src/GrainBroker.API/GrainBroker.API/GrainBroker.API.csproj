@@ -16,7 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\GrainBroker.Entities\GrainBroker.Entities.csproj" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\GrainBroker.Services\GrainBroker.Services.csproj" />
   </ItemGroup>
 
 </Project>

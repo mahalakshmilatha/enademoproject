@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace GrainBroker.API.DTOs
+namespace GrainBroker.Entities
 {
     public class CreateFulfillmentRequest
     {

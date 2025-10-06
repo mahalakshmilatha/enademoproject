@@ -1,0 +1,101 @@
+@page "/place-order"
+@using GrainBroker.Entities
+@using GrainBroker.Entities.DTOs
+@using GrainBroker.Frontend.Services
+@using Microsoft.AspNetCore.Components.Forms
+@inject CustomerHttpClient CustomerClient
+@inject OrderHttpClient OrderClient
+@inject NavigationManager NavigationManager
+
+<h3>Place New Order</h3>
+
+<EditForm Model="@orderRequest" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group mb-3">
+        <label for="customerId">Select Customer:</label>
+        <InputSelect id="customerId" class="form-select" @bind-Value="orderRequest.CustomerId">
+            <option value="">Select a customer...</option>
+            @if (customers != null)
+            {
+                @foreach (var customer in customers)
+                {
+                    <option value="@customer.Id">@customer.Name</option>
+                }
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => orderRequest.CustomerId)" />
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="requestedAmount">Requested Grain Amount (in tons):</label>
+        <InputNumber id="requestedAmount" class="form-control" @bind-Value="orderRequest.RequestedGrainAmount" />
+        <ValidationMessage For="@(() => orderRequest.RequestedGrainAmount)" />
+    </div>
+
+    <button type="submit" class="btn btn-primary" disabled="@isSubmitting">
+        @if (isSubmitting)
+        {
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <span>Processing...</span>
+        }
+        else
+        {
+            <span>Place Order</span>
+        }
+    </button>
+
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger mt-3" role="alert">
+            @errorMessage
+        </div>
+    }
+</EditForm>
+
+@code {
+    private CreateOrderRequest orderRequest = new();
+    private IEnumerable<Customer>? customers;
+    private bool isSubmitting;
+    private string? errorMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            customers = await CustomerClient.GetAllCustomersAsync();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = "Error loading customers: " + ex.Message;
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        try
+        {
+            isSubmitting = true;
+            errorMessage = null;
+
+            var order = await OrderClient.CreateOrderAsync(orderRequest);
+            if (order != null)
+            {
+                NavigationManager.NavigateTo($"/order/{order.Id}");
+            }
+            else
+            {
+                errorMessage = "Failed to create order. Please try again.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = "Error creating order: " + ex.Message;
+        }
+        finally
+        {
+            isSubmitting = false;
+        }
+    }
+}

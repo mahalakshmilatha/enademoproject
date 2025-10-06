@@ -1,7 +1,7 @@
 using GrainBroker.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace GrainBroker.API.Services
+namespace GrainBroker.Services
 {
     public class SupplierService : ISupplierService
     {

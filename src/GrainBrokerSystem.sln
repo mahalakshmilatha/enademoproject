@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrainBroker.API", "GrainBro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrainBroker.Entities", "GrainBroker.Entities\GrainBroker.Entities.csproj", "{B85063E8-0175-4D7D-9BC3-D46FA0BC116D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrainBroker.Frontend", "GrainBroker.Frontend\GrainBroker.Frontend.csproj", "{1E335EFE-D66D-44A9-B110-2AC5B98CFC1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrainBroker.Services", "GrainBroker.Services\GrainBroker.Services.csproj", "{6FD6BCFF-E54C-438A-9FBE-1FCFA354F56E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{B85063E8-0175-4D7D-9BC3-D46FA0BC116D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B85063E8-0175-4D7D-9BC3-D46FA0BC116D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B85063E8-0175-4D7D-9BC3-D46FA0BC116D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E335EFE-D66D-44A9-B110-2AC5B98CFC1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E335EFE-D66D-44A9-B110-2AC5B98CFC1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E335EFE-D66D-44A9-B110-2AC5B98CFC1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E335EFE-D66D-44A9-B110-2AC5B98CFC1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FD6BCFF-E54C-438A-9FBE-1FCFA354F56E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FD6BCFF-E54C-438A-9FBE-1FCFA354F56E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FD6BCFF-E54C-438A-9FBE-1FCFA354F56E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FD6BCFF-E54C-438A-9FBE-1FCFA354F56E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

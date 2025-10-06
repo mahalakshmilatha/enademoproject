@@ -1,4 +1,4 @@
-namespace GrainBroker.API.DTOs
+namespace GrainBroker.Entities
 {
     public class CreateSupplierRequest
     {

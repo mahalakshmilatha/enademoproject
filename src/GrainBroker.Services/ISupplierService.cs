@@ -1,6 +1,6 @@
 using GrainBroker.Entities;
 
-namespace GrainBroker.API.Services
+namespace GrainBroker.Services
 {
     public interface ISupplierService
     {
