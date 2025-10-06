@@ -11,6 +11,7 @@ builder.Services.AddDbContext<GrainBrokerDbContext>(options =>
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IFulfillmentService, FulfillmentService>();
+builder.Services.AddScoped<ISupplierService, SupplierService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
