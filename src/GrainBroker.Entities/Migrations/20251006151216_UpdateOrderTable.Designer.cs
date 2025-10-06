@@ -4,6 +4,7 @@ using GrainBroker.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GrainBroker.Entities.Migrations
 {
     [DbContext(typeof(GrainBrokerDbContext))]
-    partial class GrainBrokerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251006151216_UpdateOrderTable")]
+    partial class UpdateOrderTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,7 +51,7 @@ namespace GrainBroker.Entities.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("22b0057e-1bf3-4683-8e75-0292cac5fd03"),
+                            Id = new Guid("36328e54-eeb2-483c-911c-d86633a2d621"),
                             CustomerLocation = "Cincinatti",
                             CustomerName = "ABC",
                             Status = "Active"
@@ -71,6 +74,7 @@ namespace GrainBroker.Entities.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Status")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("OrderId");
@@ -136,7 +140,7 @@ namespace GrainBroker.Entities.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c46ff4fb-f1d2-4bad-a4e4-625dcc45f261"),
+                            Id = new Guid("50110191-0d4c-48f3-bf48-88a59049ffb0"),
                             Status = "Active",
                             StockAvailable = 0,
                             SupplierLocation = "Omaha",

@@ -58,12 +58,12 @@ namespace GrainBroker.Entities
                 .Property(f => f.CostOfDelivery)
                 .HasColumnType("decimal(18,2)");
 
-            // Initialize collections in entity constructors
-            modelBuilder.Entity<Customer>()
-                .HasData(new Customer { Id = Guid.NewGuid(),CustomerName = "ABC", CustomerLocation = "Cincinatti" });
+            //// Initialize collections in entity constructors
+            //modelBuilder.Entity<Customer>()
+            //    .HasData(new Customer { Id = Guid.NewGuid(),CustomerName = "ABC", CustomerLocation = "Cincinatti" });
 
-            modelBuilder.Entity<Supplier>()
-                .HasData(new Supplier { Id = Guid.NewGuid(),SupplierName="XYZ", SupplierLocation = "Omaha" });
+            //modelBuilder.Entity<Supplier>()
+            //    .HasData(new Supplier { Id = Guid.NewGuid(),SupplierName="XYZ", SupplierLocation = "Omaha" });
         }
     }
 }
