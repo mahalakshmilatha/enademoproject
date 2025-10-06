@@ -35,14 +35,14 @@ namespace GrainBroker.API.Services
         {
             return await _context.Orders
                 .Include(o => o.Customer)
-                .Include(o => o.Fulfillment)
+                //.Include(o => o.Fulfillment)
                 .FirstOrDefaultAsync(o => o.OrderId == orderId);
         }
 
         public async Task<IEnumerable<Order>> GetOrdersByCustomerIdAsync(Guid customerId)
         {
             return await _context.Orders
-                .Include(o => o.Fulfillment)
+                //.Include(o => o.Fulfillment)
                 .Where(o => o.CustomerId == customerId)
                 .ToListAsync();
         }

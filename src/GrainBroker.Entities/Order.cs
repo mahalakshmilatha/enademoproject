@@ -21,8 +21,8 @@ public class Order
     [Column(TypeName = "decimal(18,2)")]
     [Range(0, Double.MaxValue)]
     public decimal RequestedGrainAmount { get; set; }
-
-    public virtual OrderFulfillment? Fulfillment { get; set; }
-
     public string Status { get; set; } = "Pending";
+
+   // public virtual OrderFulfillment? Fulfillment { get; set; }
+
 }

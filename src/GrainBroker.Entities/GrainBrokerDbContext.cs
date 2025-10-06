@@ -39,11 +39,11 @@ namespace GrainBroker.Entities
             //    .OnDelete(DeleteBehavior.Restrict);
 
             // Configure one-to-one relationship between Order and OrderFulfillment
-            modelBuilder.Entity<Order>()
-                .HasOne(o => o.Fulfillment)
-                .WithOne(f => f.Order)
-                .HasForeignKey<OrderFulfillment>(f => f.OrderId)
-                .OnDelete(DeleteBehavior.Cascade);
+            //modelBuilder.Entity<Order>()
+            //    .HasOne(o => o.Fulfillment)
+            //    .WithOne(f => f.Order)
+            //    .HasForeignKey<OrderFulfillment>(f => f.OrderId)
+            //    .OnDelete(DeleteBehavior.Cascade);
 
             // Configure decimal properties
             modelBuilder.Entity<Order>()
