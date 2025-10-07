@@ -1,64 +1,67 @@
 @page "/place-order"
-@using GrainBroker.Entities
-@using GrainBroker.Entities.DTOs
-@using GrainBroker.Frontend.Services
 @using Microsoft.AspNetCore.Components.Forms
+@using GrainBroker.Entities
+@using GrainBroker.Frontend.Models
 @inject CustomerHttpClient CustomerClient
 @inject OrderHttpClient OrderClient
 @inject NavigationManager NavigationManager
 
-<h3>Place New Order</h3>
+<PageTitle>Place Order - Grain Broker System</PageTitle>
 
-<EditForm Model="@orderRequest" OnValidSubmit="HandleValidSubmit">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+<div class="container mt-4">
+    <h3>Place New Order</h3>
 
-    <div class="form-group mb-3">
-        <label for="customerId">Select Customer:</label>
-        <InputSelect id="customerId" class="form-select" @bind-Value="orderRequest.CustomerId">
-            <option value="">Select a customer...</option>
-            @if (customers != null)
-            {
-                @foreach (var customer in customers)
+    <EditForm FormName="placeOrder" Model="@model" OnValidSubmit="@HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="mb-3">
+            <label for="customer" class="form-label">Select Customer:</label>
+            <InputSelect id="customer" class="form-select" @bind-Value="model.CustomerId">
+                <option value="">Select a customer...</option>
+                @if (customers != null)
                 {
-                    <option value="@customer.Id">@customer.Name</option>
+                    @foreach (var customer in customers)
+                    {
+                        <option value="@customer.Id">@customer.CustomerName</option>
+                    }
                 }
-            }
-        </InputSelect>
-        <ValidationMessage For="@(() => orderRequest.CustomerId)" />
-    </div>
-
-    <div class="form-group mb-3">
-        <label for="requestedAmount">Requested Grain Amount (in tons):</label>
-        <InputNumber id="requestedAmount" class="form-control" @bind-Value="orderRequest.RequestedGrainAmount" />
-        <ValidationMessage For="@(() => orderRequest.RequestedGrainAmount)" />
-    </div>
-
-    <button type="submit" class="btn btn-primary" disabled="@isSubmitting">
-        @if (isSubmitting)
-        {
-            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-            <span>Processing...</span>
-        }
-        else
-        {
-            <span>Place Order</span>
-        }
-    </button>
-
-    @if (!string.IsNullOrEmpty(errorMessage))
-    {
-        <div class="alert alert-danger mt-3" role="alert">
-            @errorMessage
+            </InputSelect>
+            <ValidationMessage For="@(() => model.CustomerId)" />
         </div>
-    }
-</EditForm>
+
+        <div class="mb-3">
+            <label for="amount" class="form-label">Grain Amount (tons):</label>
+            <InputNumber id="amount" class="form-control" @bind-Value="model.RequestedGrainAmount" />
+            <ValidationMessage For="@(() => model.RequestedGrainAmount)" />
+        </div>
+
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary btn-lg" disabled="@model.IsSubmitting">
+                @if (model.IsSubmitting)
+                {
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    <span>Processing...</span>
+                }
+                else
+                {
+                    <span>Place Order</span>
+                }
+            </button>
+        </div>
+
+        @if (!string.IsNullOrEmpty(model.ErrorMessage))
+        {
+            <div class="alert alert-danger mt-3" role="alert">
+                @model.ErrorMessage
+            </div>
+        }
+    </EditForm>
+</div>
 
 @code {
-    private CreateOrderRequest orderRequest = new();
+    private OrderModel model = new();
     private IEnumerable<Customer>? customers;
-    private bool isSubmitting;
-    private string? errorMessage;
 
     protected override async Task OnInitializedAsync()
     {
@@ -68,34 +71,42 @@
         }
         catch (Exception ex)
         {
-            errorMessage = "Error loading customers: " + ex.Message;
+            model.ErrorMessage = $"Error loading customers: {ex.Message}";
         }
     }
 
     private async Task HandleValidSubmit()
     {
+        if (model.CustomerId == Guid.Empty)
+        {
+            model.ErrorMessage = "Please select a customer";
+            return;
+        }
+
         try
         {
-            isSubmitting = true;
-            errorMessage = null;
+            model.IsSubmitting = true;
+            model.ErrorMessage = null;
 
+            var orderRequest = model.ToCreateOrderRequest();
             var order = await OrderClient.CreateOrderAsync(orderRequest);
+            
             if (order != null)
             {
-                NavigationManager.NavigateTo($"/order/{order.Id}");
+                NavigationManager.NavigateTo($"/order/{order.OrderId}");
             }
             else
             {
-                errorMessage = "Failed to create order. Please try again.";
+                model.ErrorMessage = "Failed to create order. Please try again.";
             }
         }
         catch (Exception ex)
         {
-            errorMessage = "Error creating order: " + ex.Message;
+            model.ErrorMessage = $"Error submitting order: {ex.Message}";
         }
         finally
         {
-            isSubmitting = false;
+            model.IsSubmitting = false;
         }
     }
 }

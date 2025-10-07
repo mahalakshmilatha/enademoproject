@@ -1,0 +1,126 @@
+@page "/"
+@using GrainBroker.Entities
+@using GrainBroker.Frontend.Models
+
+<div class="container">
+    <div class="content-wrapper">
+        <h1 class="mb-4">Welcome to Grain Broker System</h1>
+        <p class="lead">Your central platform for managing grain orders and fulfillment.</p>
+
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <div class="quick-links-section">
+                    <h3 class="mb-4">Quick Links</h3>
+                    <div class="quick-links">
+                        <a href="place-order" class="quick-link">
+                            <span class="icon">📦</span>
+                            <div class="link-content">
+                                <h4>Place New Order</h4>
+                                <p>Create a new grain order for customers</p>
+                            </div>
+                            <span class="arrow">→</span>
+                        </a>
+                        <a href="add-customer" class="quick-link">
+                            <span class="icon">👥</span>
+                            <div class="link-content">
+                                <h4>Add Customer</h4>
+                                <p>Register a new customer in the system</p>
+                            </div>
+                            <span class="arrow">→</span>
+                        </a>
+                        <a href="add-supplier" class="quick-link">
+                            <span class="icon">🏭</span>
+                            <div class="link-content">
+                                <h4>Add Supplier</h4>
+                                <p>Register a new grain supplier</p>
+                            </div>
+                            <span class="arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .content-wrapper {
+        padding-top: 5rem;
+        padding-bottom: 2rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        color: #333;
+    }
+
+    .lead {
+        font-size: 1.25rem;
+        color: #666;
+    }
+
+    .quick-links-section {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .quick-links {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .quick-link {
+        display: flex;
+        align-items: center;
+        padding: 1.25rem;
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        text-decoration: none;
+        color: #333;
+        transition: all 0.3s ease;
+    }
+
+    .quick-link:hover {
+        background-color: #f1f3f5;
+        border-color: #dee2e6;
+        transform: translateX(5px);
+        text-decoration: none;
+        color: #333;
+    }
+
+    .icon {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+    }
+
+    .link-content {
+        flex: 1;
+    }
+
+    .link-content h4 {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .link-content p {
+        margin: 0.25rem 0 0;
+        font-size: 0.9rem;
+        color: #6c757d;
+    }
+
+    .arrow {
+        font-size: 1.25rem;
+        color: #6c757d;
+        margin-left: 1rem;
+    }
+
+    .quick-link:hover .arrow {
+        transform: translateX(5px);
+        transition: transform 0.3s ease;
+    }
+</style>

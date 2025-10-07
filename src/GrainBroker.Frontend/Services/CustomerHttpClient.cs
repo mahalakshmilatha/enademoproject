@@ -26,7 +26,13 @@ namespace GrainBroker.Frontend.Services
 
         public async Task<Customer?> CreateCustomerAsync(CreateCustomerRequest request)
         {
-            var response = await _httpClient.PostAsJsonAsync(BaseUrl, request);
+            var customer = new Customer
+            {
+                CustomerName = request.CustomerName,
+                CustomerLocation = request.Location,
+                Status = "Active"
+            };
+            var response = await _httpClient.PostAsJsonAsync(BaseUrl, customer);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<Customer>();
         }

@@ -1,0 +1,184 @@
+@page "/add-supplier"
+@using GrainBroker.Entities
+@using GrainBroker.Frontend.Models
+@using Microsoft.AspNetCore.Components.Forms
+@inject SupplierHttpClient SupplierClient
+
+<div class="container">
+    <div class="content-wrapper">
+        <h2 class="mb-4">Supplier Management</h2>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Add New Supplier</h5>
+                    </div>
+                    <div class="card-body">
+                        <EditForm Model="@model" OnValidSubmit="@HandleValidSubmit">
+                            <DataAnnotationsValidator />
+
+                            <div class="mb-3">
+                                <label for="supplierName" class="form-label">Supplier Name</label>
+                                <InputText id="supplierName" class="form-control" @bind-Value="model.SupplierName" />
+                                <ValidationMessage For="@(() => model.SupplierName)" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="location" class="form-label">Location</label>
+                                <InputText id="location" class="form-control" @bind-Value="model.Location" />
+                                <ValidationMessage For="@(() => model.Location)" />
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100" disabled="@model.IsSubmitting">
+                                @if (model.IsSubmitting)
+                                {
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    <span>Saving...</span>
+                                }
+                                else
+                                {
+                                    <span>Add Supplier</span>
+                                }
+                            </button>
+                        </EditForm>
+
+                        @if (!string.IsNullOrEmpty(model.ErrorMessage))
+                        {
+                            <div class="alert alert-danger mt-3" role="alert">
+                                @model.ErrorMessage
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Existing Suppliers</h5>
+                            <button class="btn btn-sm btn-outline-primary" @onclick="RefreshSuppliers">
+                                <span class="oi oi-reload"></span> Refresh
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        @if (suppliers == null)
+                        {
+                            <div class="text-center py-3">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        }
+                        else if (!suppliers.Any())
+                        {
+                            <div class="alert alert-info">
+                                No suppliers found. Add your first supplier using the form.
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Supplier Name</th>
+                                            <th>Location</th>
+                                            <th>Stock Available</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var supplier in suppliers)
+                                        {
+                                            <tr>
+                                                <td>@supplier.SupplierName</td>
+                                                <td>@supplier.SupplierLocation</td>
+                                                <td>@supplier.StockAvailable</td>
+                                                <td>@supplier.Status</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .content-wrapper {
+        padding-top: 5rem;
+        padding-bottom: 2rem;
+    }
+
+    .card {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .table th {
+        background-color: #f8f9fa;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f1f3f5;
+    }
+</style>
+
+@code {
+    private SupplierModel model = new();
+    private IEnumerable<Supplier>? suppliers;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadSuppliers();
+    }
+
+    private async Task LoadSuppliers()
+    {
+        try
+        {
+            suppliers = await SupplierClient.GetAllSuppliersAsync();
+        }
+        catch (Exception ex)
+        {
+            model.ErrorMessage = $"Error loading suppliers: {ex.Message}";
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        try
+        {
+            model.IsSubmitting = true;
+            model.ErrorMessage = null;
+
+            var request = model.ToCreateSupplierRequest();
+            await SupplierClient.CreateSupplierAsync(request);
+
+            // Reset the form
+            model.Reset();
+
+            // Refresh the supplier list
+            await LoadSuppliers();
+        }
+        catch (Exception ex)
+        {
+            model.ErrorMessage = $"Error adding supplier: {ex.Message}";
+        }
+        finally
+        {
+            model.IsSubmitting = false;
+        }
+    }
+
+    private async Task RefreshSuppliers()
+    {
+        await LoadSuppliers();
+    }
+}
