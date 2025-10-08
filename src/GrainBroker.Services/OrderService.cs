@@ -42,8 +42,16 @@ namespace GrainBroker.Services
         public async Task<IEnumerable<Order>> GetOrdersByCustomerIdAsync(Guid customerId)
         {
             return await _context.Orders
-                //.Include(o => o.Fulfillment)
+                .Include(o => o.Customer)
                 .Where(o => o.CustomerId == customerId)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Order>> GetAllOrdersAsync()
+        {
+            return await _context.Orders
+                .Include(o => o.Customer)
+                .OrderByDescending(o => o.OrderDate)
                 .ToListAsync();
         }
     }

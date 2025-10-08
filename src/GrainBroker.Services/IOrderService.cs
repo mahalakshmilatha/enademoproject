@@ -7,5 +7,6 @@ namespace GrainBroker.Services
         Task<Order> CreateOrderAsync(Guid customerId, decimal requestedGrainAmount);
         Task<Order?> GetOrderByIdAsync(Guid orderId);
         Task<IEnumerable<Order>> GetOrdersByCustomerIdAsync(Guid customerId);
+        Task<IEnumerable<Order>> GetAllOrdersAsync();
     }
 }

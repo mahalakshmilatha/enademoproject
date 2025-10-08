@@ -37,6 +37,13 @@ namespace GrainBroker.API.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
+        {
+            var orders = await _orderService.GetAllOrdersAsync();
+            return Ok(orders);
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Order>> GetOrder(Guid id)
         {

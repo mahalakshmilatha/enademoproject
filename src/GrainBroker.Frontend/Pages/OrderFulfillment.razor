@@ -1,0 +1,161 @@
+@page "/order-fulfillment"
+@using GrainBroker.Entities
+@using GrainBroker.Frontend.Models
+@using Microsoft.AspNetCore.Components.Forms
+@inject OrderHttpClient OrderClient
+@inject FulfillmentHttpClient FulfillmentClient
+@inject CustomerHttpClient CustomerClient
+@inject SupplierHttpClient SupplierClient
+
+<div class="container">
+    <div class="content-wrapper">
+        <h2 class="mb-4">Order Fulfillment</h2>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Orders</h5>
+                    <button class="btn btn-sm btn-outline-primary" @onclick="RefreshOrders">
+                        <span class="oi oi-reload"></span> Refresh
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                @if (orders == null)
+                {
+                    <div class="text-center py-3">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                }
+                else if (!orders.Any())
+                {
+                    <div class="alert alert-info">
+                        No orders found.
+                    </div>
+                }
+                else
+                {
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Order Date</th>
+                                    <th>Customer</th>
+                                    <th>Location</th>
+                                    <th>Requested Amount</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var order in orders)
+                                {
+                                    <tr>
+                                        <td>@order.OrderDate.ToString("MMM dd, yyyy")</td>
+                                        <td class="fw-bold">@(order.Customer?.CustomerName ?? "N/A")</td>
+                                        <td>@(order.Customer?.CustomerLocation ?? "N/A")</td>
+                                        <td>@order.RequestedGrainAmount.ToString("N2") kg</td>
+                                        <td>
+                                            <span class="badge @GetStatusBadgeClass(order.Status)">
+                                                @(order.Status ?? "Pending")
+                                            </span>
+                                        </td>
+                                        <td>
+                                            @if (order.Status == "Pending")
+                                            {
+                                                <button class="btn btn-sm btn-primary" @onclick="() => StartFulfillment(order)">
+                                                    Fulfill Order
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <button class="btn btn-sm btn-secondary" @onclick="() => ViewFulfillmentDetails(order)">
+                                                    View Details
+                                                </button>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .content-wrapper {
+        padding-top: 5rem;
+        padding-bottom: 2rem;
+    }
+
+    .card {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .table th {
+        background-color: #f8f9fa;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f1f3f5;
+    }
+
+    .badge {
+        padding: 0.5em 0.75em;
+    }
+</style>
+
+@code {
+    private IEnumerable<Order>? orders;
+    private string? errorMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadOrders();
+    }
+
+    private async Task LoadOrders()
+    {
+        try
+        {
+            orders = await OrderClient.GetAllOrdersAsync();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error loading orders: {ex.Message}";
+        }
+    }
+
+    private string GetStatusBadgeClass(string? status)
+    {
+        return status?.ToLower() switch
+        {
+            "pending" => "bg-warning text-dark",
+            "fulfilled" => "bg-success",
+            "cancelled" => "bg-danger",
+            _ => "bg-secondary"
+        };
+    }
+
+    private async Task StartFulfillment(Order order)
+    {
+        // TODO: Implement fulfillment workflow
+        // This could navigate to a new page or open a modal
+    }
+
+    private async Task ViewFulfillmentDetails(Order order)
+    {
+        // TODO: Implement viewing fulfillment details
+        // This could navigate to a details page or open a modal
+    }
+
+    private async Task RefreshOrders()
+    {
+        await LoadOrders();
+    }
+}
