@@ -30,22 +30,95 @@ A grain broker management system built with **ASP.NET Core 8.0**, designed to he
 ```
 src/
 ├── GrainBroker.API/           # ASP.NET Core Web API project
-│   ├── Controllers/           # API Controllers (e.g., WeatherForecastController)
-│   ├── Program.cs             # Entry point and configuration
-│   └── WeatherForecast.cs     # Example model
-└── GrainBroker.Entities/      # Data access and EF Core entities
-    ├── GrainBrokerDbContext.cs      # EF Core DbContext
-    └── Migrations/                  # EF Core migrations and model snapshots
+│   ├── Controllers/           # API Controllers
+│   ├── Services/              # Implementation of business services
+│   └── Program.cs             # Entry point and configuration
+├── GrainBroker.Entities/      # Data access and EF Core entities
+│   ├── DTOs/                  # Data Transfer Objects
+│   ├── GrainBrokerDbContext.cs # EF Core DbContext
+│   └── Migrations/            # EF Core migrations
+├── GrainBroker.Frontend/      # Blazor Frontend Application
+│   ├── Pages/                 # Razor Pages
+│   ├── Services/              # Frontend Services
+│   └── Shared/               # Shared Components
+└── GrainBroker.Services/      # Business Logic Layer
+    ├── Interfaces/           # Service Interfaces
+    └── Implementation/       # Service Implementations
 ```
 
 ---
 
 ## Database Schema
 
-- **Customers**: Id (GUID), Name, Location
-- **Suppliers**: Id (GUID), Name, Location
-- **Orders**: OrderId, OrderDate, CustomerId (foreign key), RequestedGrainAmount
-- **OrderFulfillments**: Id, OrderId (unique, foreign key), SupplierId (foreign key), SuppliedAmount, CostOfDelivery
+### Entity Relationship Diagram
+```
++-------------+          +--------------+
+|  Customers  |          |  Suppliers   |
++-------------+          +--------------+
+| Id (PK)     |          | Id (PK)      |
+| Name        |          | Name         |
+| Location    |          | Location     |
+| Status      |          | Status       |
++-------------+          +--------------+
+       |                        |
+       |                        |
+       |                        |
+    +--v---------+             |
+    |   Orders   |             |
+    +------------+             |
+    | Id (PK)    |             |
+    | OrderDate  |             |
+    | CustomerId |             |
+    | Amount     |             |
+    | Status     |             |
+    +------------+             |
+           |                   |
+           |                   |
+    +------v------------------v+
+    |    OrderFulfillments     |
+    +-----------------------+
+    | Id (PK)              |
+    | OrderId (FK)         |
+    | SupplierId (FK)      |
+    | SuppliedAmount       |
+    | CostOfDelivery       |
+    | Status               |
+    +-----------------------+
+```
+
+### Entity Details
+
+1. **Customers**
+   - `Id` (GUID, Primary Key)
+   - `Name` (string)
+   - `Location` (string)
+   - `Status` (enum)
+
+2. **Suppliers**
+   - `Id` (GUID, Primary Key)
+   - `Name` (string)
+   - `Location` (string)
+   - `Status` (enum)
+
+3. **Orders**
+   - `Id` (GUID, Primary Key)
+   - `OrderDate` (DateTime)
+   - `CustomerId` (GUID, Foreign Key)
+   - `RequestedGrainAmount` (decimal)
+   - `Status` (enum)
+
+4. **OrderFulfillments**
+   - `Id` (GUID, Primary Key)
+   - `OrderId` (GUID, Foreign Key)
+   - `SupplierId` (GUID, Foreign Key)
+   - `SuppliedAmount` (decimal)
+   - `CostOfDelivery` (decimal)
+   - `Status` (enum)
+
+### Relationships
+- One Customer can have many Orders (1:N)
+- One Order can have one OrderFulfillment (1:1)
+- One Supplier can fulfill many Orders (1:N through OrderFulfillments)
 
 All relationships are enforced with appropriate foreign keys and constraints.
 
@@ -54,9 +127,43 @@ All relationships are enforced with appropriate foreign keys and constraints.
 ## Technologies Used
 
 - ASP.NET Core 8.0
-- Entity Framework Core (with Migrations)
+- Entity Framework Core (with Code-First Migrations)
+- Blazor WebAssembly for Frontend
 - SQL Server
 - Swagger (Swashbuckle)
+- Clean Architecture Pattern
+- Repository and Service Pattern
+
+## Project Structure
+
+The solution follows a clean architecture pattern with clear separation of concerns:
+
+1. **GrainBroker.API**: Web API layer handling HTTP requests and responses
+2. **GrainBroker.Entities**: Data access layer with EF Core entities and DTOs
+3. **GrainBroker.Services**: Business logic layer with service interfaces and implementations
+4. **GrainBroker.Frontend**: Blazor WebAssembly frontend application
+
+## Getting Started
+
+1. Clone the repository
+2. Update the connection string in `GrainBroker.API/appsettings.json`
+3. Run Entity Framework migrations:
+   ```powershell
+   dotnet ef database update
+   ```
+4. Start the API project
+5. Start the Frontend project
+
+## API Endpoints
+
+The API provides the following main endpoints:
+
+- `/api/customers` - Customer management
+- `/api/suppliers` - Supplier management
+- `/api/orders` - Order management
+- `/api/fulfillments` - Order fulfillment management
+
+For detailed API documentation, run the project and visit the Swagger UI endpoint.
 
 ---
 
