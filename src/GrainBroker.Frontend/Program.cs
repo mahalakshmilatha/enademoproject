@@ -21,6 +21,7 @@ builder.Services.AddScoped<CustomerHttpClient>();
 builder.Services.AddScoped<OrderHttpClient>();
 builder.Services.AddScoped<SupplierHttpClient>();
 builder.Services.AddScoped<FulfillmentHttpClient>();
+builder.Services.AddScoped<IFulfillmentService, FulfillmentService>();
 
 
 

@@ -6,6 +6,7 @@
 @inject FulfillmentHttpClient FulfillmentClient
 @inject CustomerHttpClient CustomerClient
 @inject SupplierHttpClient SupplierClient
+@inject NavigationManager NavigationManager
 
 <div class="container">
     <div class="content-wrapper">
@@ -142,13 +143,13 @@
         };
     }
 
-    private async Task StartFulfillment(Order order)
+    private void StartFulfillment(Order order)
     {
-        // TODO: Implement fulfillment workflow
-        // This could navigate to a new page or open a modal
+        // Navigate to the matching suppliers page with the order ID
+        NavigationManager.NavigateTo($"/orders/{order.OrderId}/matching-suppliers");
     }
 
-    private async Task ViewFulfillmentDetails(Order order)
+    private void ViewFulfillmentDetails(Order order)
     {
         // TODO: Implement viewing fulfillment details
         // This could navigate to a details page or open a modal

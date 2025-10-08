@@ -1,5 +1,6 @@
 using System.Net.Http.Json;
 using GrainBroker.Entities;
+using GrainBroker.Entities.DTOs;
 
 namespace GrainBroker.Frontend.Services
 {
@@ -46,6 +47,14 @@ namespace GrainBroker.Frontend.Services
         {
             return await _httpClient.GetFromJsonAsync<IEnumerable<OrderFulfillment>>($"{BaseUrl}/order/{orderId}") 
                 ?? Enumerable.Empty<OrderFulfillment>();
+        }
+
+        public async Task<IEnumerable<Supplier>> FindSuitableSuppliersAsync(Guid orderId)
+        {
+            var request = new FindSuppliersForOrderRequest { OrderId = orderId };
+            var response = await _httpClient.PostAsJsonAsync($"{BaseUrl}/find-suppliers", request);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadFromJsonAsync<IEnumerable<Supplier>>() ?? Enumerable.Empty<Supplier>();
         }
     }
 }

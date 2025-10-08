@@ -1,0 +1,110 @@
+@page "/orders/{OrderId:guid}/matching-suppliers"
+@using GrainBroker.Entities
+@using GrainBroker.Frontend.Services
+@inject FulfillmentHttpClient FulfillmentClient
+@inject NavigationManager NavigationManager
+
+<h3>Matching Suppliers</h3>
+
+@if (order != null)
+{
+    <div class="mb-4">
+        <h4>Order Details</h4>
+        <dl class="row">
+            <dt class="col-sm-3">Order ID</dt>
+            <dd class="col-sm-9">@order.OrderId</dd>
+
+            <dt class="col-sm-3">Requested Amount</dt>
+            <dd class="col-sm-9">@order.RequestedGrainAmount</dd>
+
+            <dt class="col-sm-3">Order Date</dt>
+            <dd class="col-sm-9">@order.OrderDate.ToShortDateString()</dd>
+        </dl>
+    </div>
+}
+
+@if (loading)
+{
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+}
+else if (error != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @error
+    </div>
+}
+else if (suppliers != null && suppliers.Any())
+{
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Supplier Name</th>
+                    <th>Location</th>
+                    <th>Available Stock</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var supplier in suppliers)
+                {
+                    <tr>
+                        <td>@supplier.SupplierName</td>
+                        <td>@supplier.SupplierLocation</td>
+                        <td>@supplier.StockAvailable</td>
+                        <td>@supplier.Status</td>
+                        <td>
+                            <button class="btn btn-primary" @onclick="() => SelectSupplier(supplier.Id)">
+                                Select Supplier
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="alert alert-info" role="alert">
+        No suppliers found with sufficient stock for this order.
+    </div>
+}
+
+@code {
+    [Parameter]
+    public Guid OrderId { get; set; }
+
+    private IEnumerable<Supplier>? suppliers;
+    private Order? order;
+    private bool loading = true;
+    private string? error;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            loading = true;
+            suppliers = await FulfillmentClient.FindSuitableSuppliersAsync(OrderId);
+        }
+        catch (Exception ex)
+        {
+            error = ex.Message;
+        }
+        finally
+        {
+            loading = false;
+        }
+    }
+
+    private void SelectSupplier(Guid supplierId)
+    {
+        // Navigate to the fulfillment creation page
+        NavigationManager.NavigateTo($"/orders/{OrderId}/create-fulfillment/{supplierId}");
+    }
+}

@@ -8,5 +8,6 @@ namespace GrainBroker.Services
         Task<OrderFulfillment?> GetFulfillmentByIdAsync(Guid id);
         Task<OrderFulfillment?> GetFulfillmentByOrderIdAsync(Guid orderId);
         Task<IEnumerable<OrderFulfillment>> GetFulfillmentsBySupplierIdAsync(Guid supplierId);
+        Task<IEnumerable<Supplier>> FindSuitableSuppliersForOrderAsync(Guid orderId);
     }
 }

@@ -70,5 +70,26 @@ namespace GrainBroker.Services
                 .Where(f => f.SupplierId == supplierId)
                 .ToListAsync();
         }
+
+        public async Task<IEnumerable<Supplier>> FindSuitableSuppliersForOrderAsync(Guid orderId)
+        {
+            // Verify order exists and get the requested amount
+            var order = await _context.Orders.FindAsync(orderId)
+                ?? throw new ArgumentException("Order not found", nameof(orderId));
+
+            if (order.Status != "Pending")
+            {
+                throw new InvalidOperationException($"Order is not in Pending status. Current status: {order.Status}");
+            }
+
+            // Find suppliers with enough stock
+            var suitableSuppliers = await _context.Suppliers
+                .Where(s => s.Status == "Active" && 
+                           s.StockAvailable >= order.RequestedGrainAmount)
+                .OrderBy(s => s.StockAvailable) // Order by available stock (ascending)
+                .ToListAsync();
+
+            return suitableSuppliers;
+        }
     }
 }

@@ -1,4 +1,5 @@
 using GrainBroker.Entities;
+using GrainBroker.Entities.DTOs;
 using GrainBroker.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -74,6 +75,29 @@ namespace GrainBroker.API.Controllers
         {
             var fulfillments = await _fulfillmentService.GetFulfillmentsBySupplierIdAsync(supplierId);
             return Ok(fulfillments);
+        }
+
+        /// <summary>
+        /// Finds suitable suppliers that have enough stock to fulfill the specified order
+        /// </summary>
+        /// <param name="request">The order ID to find suppliers for</param>
+        /// <returns>List of suppliers with sufficient stock</returns>
+        [HttpPost("find-suppliers")]
+        public async Task<ActionResult<IEnumerable<Supplier>>> FindSuitableSuppliers([FromBody] FindSuppliersForOrderRequest request)
+        {
+            try
+            {
+                var suppliers = await _fulfillmentService.FindSuitableSuppliersForOrderAsync(request.OrderId);
+                return Ok(suppliers);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }
